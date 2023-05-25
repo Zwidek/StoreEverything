@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{fragments/head :: head('Sign In')}">
+</head>
+
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+
+<div class="main-container">
+
+    <div class="form-container">
+
+        <span class="form-title">Sign In</span>
+
+        <form method="POST"
+              role="form"
+              th:action="@{/user/login}">
+
+            <section class="form-errors" th:if="${loginError}">
+                <li class="form-error" th:text="${loginError}"></li>
+            </section>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="username" id="username" name="username" class="form-control" placeholder="Enter username"
+                       th:field="*{user.username}">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" th:field="*{user.password}"
+                       placeholder="Enter password">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign In</button>
+
+        </form>
+
+        <div class="form-footer">
+            <span>Don't have an account?</span>
+            <a href="/user/sign_up">Go to registration page.</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

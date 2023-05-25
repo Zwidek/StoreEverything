@@ -1,0 +1,15 @@
+package com.example.store_everything.DAL.repositories;
+
+import com.example.store_everything.DAL.models.StoredElement;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+public interface StoredElementRepository extends JpaRepository<StoredElement, UUID> {
+
+    List<StoredElement> findByAccessType_Title(String accessTypeTitle);
+    Optional<StoredElement> findBySharedLink(String link);
+
+}

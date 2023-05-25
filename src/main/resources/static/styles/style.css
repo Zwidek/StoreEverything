@@ -1,0 +1,278 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.main-header{
+    background-color: #E4572E;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.site-name{
+    font-family: 'Alatsi', sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.site-name img{
+    width: 2rem;
+}
+
+.main-nav{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: auto;
+}
+
+.main-nav a{
+    text-decoration: none;
+    color: whitesmoke;
+    font-family: 'Alata', sans-serif;
+    width: auto;
+}
+
+.main-nav a:hover{
+    color: #2E282A;
+}
+
+.main-container{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container .form-title{
+    font-family: 'Alatsi', sans-serif;
+    color: #2E282A;
+    font-size: 2rem;
+}
+
+.form-container form{
+    -webkit-box-shadow: 3px 8px 22px -5px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 3px 8px 22px -5px rgba(66, 68, 90, 1);
+    box-shadow: 3px 8px 22px -5px rgba(66, 68, 90, 1);
+    padding: 1rem;
+    border-radius: 5px;
+    min-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.form-container form label{
+    font-family: 'Alatsi', sans-serif;
+}
+
+.form-container form input, textarea, select, option{
+    font-family: 'Alata', sans-serif;
+}
+
+.form-container .form-footer{
+    margin-top: .5rem;
+    align-self: end;
+    font-family: 'Alata', sans-serif;
+}
+
+.form-container .form-footer a{
+    text-decoration: none;
+    color: #17BEBB;
+}
+
+.form-container .form-footer a:hover{
+    color: #2E282A;
+}
+
+.form-errors{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #E4572E;
+    font-family: 'Alata', sans-serif;
+}
+
+.table-container{
+    width: 60rem;
+    -webkit-box-shadow: 3px 8px 22px -5px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 3px 8px 22px -5px rgba(66, 68, 90, 1);
+    box-shadow: 3px 8px 22px -5px rgba(66, 68, 90, 1);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.button-row{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.button-row button, a{
+    width: 100%;
+}
+
+.column-form-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.role-checkbox{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.role-checkbox label:hover, input:hover{
+    cursor: pointer;
+}
+
+.role-checkbox label{
+    width: 10rem;
+    user-select: none;
+}
+
+.user-link{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+}
+
+.hello{
+    font-family: 'Alatsi', sans-serif;
+    font-size: 4rem;
+}
+
+.description-service{
+    font-family: 'Alata', sans-serif;
+    font-size: 1.5rem;
+}
+
+.description-service a{
+    text-decoration: none;
+    color: #E4572E;
+}
+
+.description-service a:hover{
+    color: #17BEBB;
+}
+
+
+textarea{
+    resize: none;
+    font-family: 'Alata', sans-serif;
+}
+
+select, option{
+    text-transform: lowercase;
+}
+
+.elements-container{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1rem;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.stored-element{
+    display: flex;
+    flex-direction: column;
+    -webkit-box-shadow: 3px 8px 22px -5px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 3px 8px 22px -5px rgba(66, 68, 90, 1);
+    box-shadow: 3px 8px 22px -5px rgba(66, 68, 90, 1);
+    padding: 1rem;
+    border-radius: 5px;
+    width: 25rem;
+    max-width: 25rem;
+}
+
+.new-element{
+    width: auto;
+}
+
+.title{
+    font-family: 'Alatsi', sans-serif;
+    font-size: 1.3rem;
+    color: #E4572E;
+    text-transform: uppercase;
+}
+
+.title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.access-type{
+    font-family: 'Alata', sans-serif;
+    font-size: .8rem;
+}
+
+.description{
+    font-family: 'Alata', sans-serif;
+    font-size: .9rem;
+}
+
+.elements-container .full-link{
+    text-decoration: none;
+    color: #17BEBB;
+    font-family: 'Alata', sans-serif;
+}
+
+.elements-container .full-link:hover{
+    color: #E4572E;
+}
+
+.category{
+    font-family: 'Alata', sans-serif;
+    font-size: .8rem;
+}
+
+.filter-container{
+    margin: 1rem;
+}
+
+.fields{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.fields select, input{
+    min-width: 18rem;
+}
+
+.main-container .delimiter{
+    width: 50%;
+}

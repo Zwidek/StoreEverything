@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('New Category')}">
+</head>
+
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<div class="main-container">
+
+  <div class="form-container">
+
+    <span class="form-title">New category</span>
+
+    <form method="POST"
+          role="form"
+          th:action="@{/categories/new}">
+
+      <section class="form-errors" th:if="${categoryError}">
+        <li class="form-error" th:text="${categoryError}"></li>
+      </section>
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" class="form-control"
+               th:field="${category.title}" required placeholder="Enter title">
+        <span th:if="${#fields.hasErrors('category.title')}" th:errors="*{category.title}" style="color: red;"></span>
+      </div>
+
+      <div class="button-row">
+        <a href="/categories" class="btn btn-danger">Cancel</a>
+        <button type="submit" class="btn btn-success">Add</button>
+      </div>
+
+
+    </form>
+
+  </div>
+
+</div>
+
+</body>
+</html>

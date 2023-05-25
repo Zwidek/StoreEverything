@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('My Store')}">
+</head>
+
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+
+<div class="main-container">
+
+    <div class="filter-container">
+        <span class="title">Filters:</span>
+        <form method="GET"
+              role="form"
+              th:action="@{/store}" style="display: flex; flex-direction: column; gap: 1rem">
+            <div class="fields">
+                <select class="form-control" id="category-filter" name="category-filter" th:field="${filters.categoryFilter}">
+                    <option value="all">all</option>
+                    <option th:each="category : ${categories}" th:value="${category.title}"
+                            th:text="${category.title}"></option>
+                </select>
+                <input type="date" id="date-filter" class="form-control" name="date-filter" th:field="${filters.dateFilter}" >
+
+                <button type="submit" class="btn btn-outline-success">Filter</button>
+            </div>
+
+            <div class="fields">
+                <select class="form-control" id="category-sort" name="category-sort" th:field="${filters.categorySort}">
+                    <option value="most">From the most popular</option>
+                    <option value="least">From the least popular</option>
+                </select>
+
+                <select class="form-control" id="alphabetical-sort" name="alphabetical-sort" th:field="${filters.alphabeticalSort}">
+                    <option value="start">Alphabetical from the beginning</option>
+                    <option value="end">Alphabetical from the end</option>
+                </select>
+
+                <button type="submit" class="btn btn-outline-success">Sort</button>
+            </div>
+        </form>
+    </div>
+
+    <hr class="delimiter">
+
+    <a href="/store/new" class="btn btn-outline-success new-element">+ Add to store</a>
+
+    <div class="elements-container">
+
+        <div th:each="element : ${storedElements}" class="stored-element">
+            <div class="title-container">
+                <span th:text="${element.title}" class="title"></span>
+                <span th:text="${element.accessType.title}" class="access-type"></span>
+            </div>
+            <span class="category" th:text="${element.category.title}"></span>
+            <span class="category"
+                  th:text="'Stored by: ' + ${element.storedByUser.name} + ' ' + ${element.storedByUser.surname} + ', ' + ${element.getFormattedDate()}"></span>
+            <hr>
+            <span class="description" th:text="${element.description}"></span>
+            <hr>
+            <a th:href="${element.link}" target="_blank" class="full-link">Show full data</a>
+            <hr th:if="${element.accessType.title == 'SHARED VIA LINK'}">
+            <span th:if="${element.accessType.title == 'SHARED VIA LINK'}" class="category"
+                  th:text="'Link to share: ' + ${element.getSharedLink()}"></span>
+            <hr>
+            <div class="button-row">
+                <a th:href="@{'/store/delete/' + ${element.id}}" class="btn btn-outline-danger">Delete</a>
+                <a th:href="@{'/store/edit/' + ${element.id}}" href="" class="btn btn-outline-primary">Edit</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

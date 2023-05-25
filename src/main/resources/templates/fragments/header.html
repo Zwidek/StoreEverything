@@ -1,0 +1,37 @@
+<header class="main-header" th:fragment="header">
+
+  <section class="site-name">
+    <img alt="logo" src="/images/online-store.svg">
+    <span>Store Everything</span>
+  </section>
+
+  <nav class="main-nav">
+    <a href="/index">Home</a>
+
+    <span sec:authorize="hasAuthority('FULL_USER')">|</span>
+    <a sec:authorize="hasAuthority('FULL_USER')" href="/store">My store</a>
+
+    <span sec:authorize="hasAuthority('FULL_USER')">|</span>
+    <a sec:authorize="hasAuthority('FULL_USER')" href="/categories">Categories</a>
+
+    <span sec:authorize="hasAuthority('FULL_USER')">|</span>
+    <a sec:authorize="hasAuthority('FULL_USER')" href="/shared/shared_with_me">Shared with me</a>
+
+    <!--Admin link to users list-->
+    <span sec:authorize="hasAuthority('ADMIN')">|</span>
+    <a href="/users" sec:authorize="hasAuthority('ADMIN')">Users</a>
+
+    <span>|</span>
+
+    <!--Sign in link-->
+    <a href="/user/sign_in" sec:authorize="!isAuthenticated()">Sign In</a>
+
+    <!--User firstname and lastname with log out link-->
+    <a class="user-link" href="/user/logout" sec:authorize="isAuthenticated()">
+      <span sec:authentication="principal.name"></span>
+      <span sec:authentication="principal.surname"></span>
+    </a>
+
+  </nav>
+
+</header>

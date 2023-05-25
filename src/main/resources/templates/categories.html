@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Categories')}">
+</head>
+
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<div class="main-container">
+
+  <div class="table-container">
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col" sec:authorize="hasAuthority('ADMIN')">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="category: ${categories}">
+        <td th:text="${category.id}" sec:authorize="hasAuthority('ADMIN')"></td>
+        <td th:text="${category.title}"></td>
+        <td>
+          <div class="button-row">
+            <a th:href="@{'/categories/delete/' + ${category.id}}" class="btn btn-outline-danger">Delete</a>
+            <a th:href="@{'/categories/update/' + ${category.id}}" href="" class="btn btn-outline-primary">Edit</a>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <a href="/categories/new" class="btn btn-outline-primary">+ Add category</a>
+  </div>
+
+</div>
+
+</body>
+</html>

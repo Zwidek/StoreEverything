@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head :: head('Shared With Me')}">
+</head>
+
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<div class="main-container">
+
+    <div class="elements-container">
+        <div th:each="element : ${storedElements}" class="stored-element" th:if="${storedElements.size() > 0}">
+            <div class="title-container">
+                <span th:text="${element.title}" class="title"></span>
+                <span th:text="${element.accessType.title}" class="access-type"></span>
+            </div>
+            <span class="category" th:text="${element.category.title}"></span>
+            <span class="category"
+                  th:text="'Stored by: ' + ${element.storedByUser.name} + ' ' + ${element.storedByUser.surname}"></span>
+            <hr>
+            <span class="description" th:text="${element.description}"></span>
+            <hr>
+            <a th:href="${element.link}" target="_blank">Show full data</a>
+        </div>
+
+        <div th:if="${storedElements.size() == 0}">
+            <div class="description-service">
+                <span>No data :(</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

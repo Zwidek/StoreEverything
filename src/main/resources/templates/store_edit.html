@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Edit Element')}">
+</head>
+
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<div class="main-container">
+
+  <div class="form-container">
+
+    <span class="form-title">Store new element</span>
+
+    <form method="POST"
+          role="form"
+          th:action="@{/store/edit}">
+
+      <section class="form-errors" th:if="${storeError}">
+        <li class="form-error" th:text="${storeError}"></li>
+      </section>
+
+      <input type="hidden" th:field="${storedElement.id}" th:value="${storedElement.id}">
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" class="form-control"
+               th:field="${storedElement.title}" required placeholder="Enter title">
+        <span th:if="${#fields.hasErrors('storedElement.title')}" th:errors="*{storedElement.title}" style="color: red;"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" th:field="${storedElement.description}" placeholder="Enter description" class="form-control" rows="5" style="resize: none; font-family: 'Alata', sans-serif;" maxlength="255"></textarea>
+        <span th:if="${#fields.hasErrors('storedElement.description')}" th:errors="*{storedElement.description}" style="color: red;"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="full-data">Link to full data</label>
+        <input type="text" id="full-data" name="full-data" class="form-control"
+               th:field="${storedElement.link}" required placeholder="Place link to main event data">
+        <span th:if="${#fields.hasErrors('storedElement.link')}" th:errors="*{storedElement.link}" style="color: red;"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category" th:field="${storedElement.category}" class="form-control" style="text-transform: lowercase; font-family: 'Alata', sans-serif">
+          <option th:each="category : ${categories}" th:value="${category.title}" th:text="${category.title}"></option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="access-type">Access type</label>
+        <select id="access-type" name="access-type" th:field="${storedElement.accessType}" class="form-control" style="text-transform: lowercase; font-family: 'Alata', sans-serif" onchange="onAccessTypeSelected()">
+          <option th:each="accessType : ${accessTypes}" th:value="${accessType.title}" th:text="${accessType.title}"></option>
+        </select>
+      </div>
+
+      <div class="form-group" id="users-box" style="display: none">
+        <label for="users">Users</label>
+        <select id="users" name="users[]" th:field="${storedElement.sharedWithUsers}" class="form-control" style="font-family: 'Alata', sans-serif" multiple>
+          <option style="text-transform: capitalize" th:selected="${storedElement.sharedWithUsers.contains(user.username)} ? 'selected' : ''" th:if="${user.username != #authentication.principal.username}" th:each="user : ${users}" th:value="${user.username}" th:text="${user.name} + ' ' + ${user.surname}"></option>
+        </select>
+      </div>
+
+      <div class="button-row">
+        <a href="/store" class="btn btn-danger">Cancel</a>
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+  let accessType = document.getElementById('access-type').value;
+  if(accessType === 'SHARED WITH USERS'){
+    let usersBox = document.getElementById('users-box');
+    usersBox.style.display = 'block';
+  }
+
+  function onAccessTypeSelected(){
+    let accessType = document.getElementById('access-type').value;
+    let usersBox = document.getElementById('users-box');
+
+    if(accessType === 'SHARED WITH USERS'){
+      usersBox.style.display = 'block';
+    }else{
+      usersBox.style.display = 'none';
+    }
+
+  }
+
+</script>
+
+</body>
+
+</html>
+
+
