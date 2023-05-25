@@ -1,5 +1,6 @@
 package com.example.store_everything.DAL.DTOs;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -27,6 +28,8 @@ public class ApplicationUserDTO {
     private String username;
     @Min(value = 18, message = "Your age should be equal to or greater than 18")
     private int age;
+    @Email
+    private String email;
 
     public ApplicationUserDTO(){
 
@@ -78,5 +81,13 @@ public class ApplicationUserDTO {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

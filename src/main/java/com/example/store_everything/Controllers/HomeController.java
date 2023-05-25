@@ -1,6 +1,5 @@
 package com.example.store_everything.Controllers;
 
-import com.example.store_everything.DAL.DTOs.ApplicationUserDTO;
 import com.example.store_everything.DAL.models.StoredElement;
 import com.example.store_everything.DAL.repositories.StoredElementRepository;
 import com.example.store_everything.DAL.repositories.UserRepository;

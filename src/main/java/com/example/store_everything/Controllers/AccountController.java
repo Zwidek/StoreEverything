@@ -73,6 +73,7 @@ public class AccountController {
         applicationUser.setUsername(userDto.getUsername());
         applicationUser.setName(userDto.getName());
         applicationUser.setSurname(userDto.getSurname());
+        applicationUser.setEmail(userDto.getEmail());
         applicationUser.setAge(userDto.getAge());
         applicationUser.setPassword(encoder.encode(userDto.getPassword()));
 

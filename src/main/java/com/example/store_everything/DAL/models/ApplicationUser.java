@@ -38,6 +38,9 @@ public class ApplicationUser {
     @Min(18)
     private int age;
 
+    @Email
+    private String email;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -134,5 +137,13 @@ public class ApplicationUser {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

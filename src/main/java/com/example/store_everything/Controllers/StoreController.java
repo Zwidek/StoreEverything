@@ -12,6 +12,10 @@ import com.example.store_everything.DAL.repositories.UserRepository;
 import com.example.store_everything.config.Filters;
 import com.example.store_everything.config.UserDetailsImpl;
 import jakarta.validation.Valid;
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -111,7 +115,7 @@ public class StoreController {
     public String storeNewElement(@Valid @ModelAttribute("storedElement") StoredElementDTO storedElementDTO,
                                   BindingResult result,
                                   WebRequest request,
-                                  Model model) {
+                                  Model model) throws EmailException {
         if(result.hasErrors()){
             model.addAttribute("categories", this.categoryRepository.findAll());
             model.addAttribute("accessTypes", this.accessTypeRepository.findAll());
@@ -122,7 +126,18 @@ public class StoreController {
 
         List<ApplicationUser> users = new ArrayList<>();
         for (String username : storedElementDTO.getSharedWithUsers()) {
-            users.add(this.userRepository.findByUsername(username).get());
+            ApplicationUser user = this.userRepository.findByUsername(username).get();
+            users.add(user);
+            Email email = new SimpleEmail();
+            email.setHostName("smtp.office365.com");
+            email.setSmtpPort(587);
+            email.setStartTLSEnabled(true);
+            email.setAuthenticator(new DefaultAuthenticator("71033@student.pb.edu.pl", "TODO")); //TODO podac haslo
+            email.setFrom("71033@student.pb.edu.pl");
+            email.setSubject(username + " Zaprosił Cie do obejrzenia nowej notatki w aplikacji store everything!");
+            email.setMsg("Message is waiting from: " + username + "\nhttp://localhost:8080/shared/shared_with_me");
+            email.addTo(user.getEmail());
+            email.send();
         }
 
         if (storedElementDTO.getAccessType().equals("SHARED VIA LINK")) {
