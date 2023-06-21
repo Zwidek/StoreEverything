@@ -3,7 +3,6 @@ package com.example.store_everything.DAL.models;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "access_type")
@@ -11,8 +10,8 @@ public class AccessType {
 
 
     @jakarta.persistence.Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long Id;
 
     private String title;
 
@@ -25,11 +24,11 @@ public class AccessType {
     }
 
 
-    public UUID getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         Id = id;
     }
 

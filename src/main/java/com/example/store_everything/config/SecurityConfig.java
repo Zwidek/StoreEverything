@@ -1,5 +1,6 @@
 package com.example.store_everything.config;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -48,10 +49,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
+        PathRequest.H2ConsoleRequestMatcher h2ConsoleRequestMatcher = PathRequest.toH2Console();
         http.cors().and().csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/user/sign_up").permitAll()
+                                .requestMatchers(h2ConsoleRequestMatcher).permitAll()
                                 .requestMatchers("/user/register").permitAll()
                                 .requestMatchers("/user/sign_in").permitAll()
                                 .requestMatchers("/user/login").permitAll()
@@ -65,12 +67,14 @@ public class SecurityConfig {
                                 .requestMatchers("/store/**").permitAll()
                                 .requestMatchers("/shared/**").permitAll()
                                 .requestMatchers("/shared_elements/**").permitAll()
+                                .requestMatchers("/h2-console/**").permitAll()
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
                 );
-
+        http.csrf(csrf -> csrf.ignoringRequestMatchers(h2ConsoleRequestMatcher));
+        http.headers().frameOptions().disable();
         http.authenticationProvider(authenticationProvider());
 
         return http.build();

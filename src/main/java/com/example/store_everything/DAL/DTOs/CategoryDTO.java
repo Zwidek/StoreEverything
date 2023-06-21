@@ -4,10 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-import java.util.UUID;
 
 public class CategoryDTO {
-    private UUID id;
+    private Long id;
     @NotBlank(message = "Title is required")
     @Size(min=3, max=20, message = "Title length should be between 3 and 20 characters")
     @Pattern(regexp = "[a-z]+", message = "Title should be lowercase and can't have special characters")
@@ -17,11 +16,11 @@ public class CategoryDTO {
     }
 
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -5,11 +5,10 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.URL;
 
 import java.util.List;
-import java.util.UUID;
 
 public class StoredElementDTO {
 
-    private UUID id;
+    private Long id;
     @NotBlank(message = "Title is required")
     @Size(min = 3, max = 20, message = "Title length should be between 3 and 20 characters")
     private String title;
@@ -84,11 +83,11 @@ public class StoredElementDTO {
         this.category = category;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

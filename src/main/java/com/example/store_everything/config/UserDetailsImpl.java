@@ -10,7 +10,6 @@ import java.io.Serial;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
@@ -18,7 +17,7 @@ public class UserDetailsImpl implements UserDetails {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private final UUID id;
+    private final Long id;
     private final String username, name, surname;
     private final int age;
     @JsonIgnore
@@ -26,7 +25,7 @@ public class UserDetailsImpl implements UserDetails {
 
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(UUID id, String username, String name, String surname, String password, int age,
+    public UserDetailsImpl(Long id, String username, String name, String surname, String password, int age,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
@@ -57,7 +56,7 @@ public class UserDetailsImpl implements UserDetails {
         return authorities;
     }
 
-    public UUID id() {
+    public Long id() {
         return id;
     }
 

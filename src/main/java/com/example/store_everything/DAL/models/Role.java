@@ -3,14 +3,13 @@ package com.example.store_everything.DAL.models;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long Id;
 
     @Column(unique = true)
     private String title;
@@ -26,11 +25,11 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private List<ApplicationUser> users;
 
-    public UUID getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         Id = id;
     }
 

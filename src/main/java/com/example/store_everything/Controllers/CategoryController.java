@@ -13,7 +13,6 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Controller
 public class CategoryController {
@@ -66,7 +65,7 @@ public class CategoryController {
     @PreAuthorize("hasAuthority('FULL_USER')")
     @GetMapping("/categories/delete/{id}")
     public String deleteCategory(@PathVariable("id") String id) {
-        Optional<Category> category = this.categoryRepository.findById(UUID.fromString(id));
+        Optional<Category> category = this.categoryRepository.findById(Long.valueOf(id));
         category.ifPresent(this.categoryRepository::delete);
         return "redirect:/categories";
     }
@@ -74,7 +73,7 @@ public class CategoryController {
     @PreAuthorize("hasAuthority('FULL_USER')")
     @GetMapping("/categories/update/{id}")
     public String showEditCategoryForm(@PathVariable("id") String id, Model model) {
-        Optional<Category> oldCategory = this.categoryRepository.findById(UUID.fromString(id));
+        Optional<Category> oldCategory = this.categoryRepository.findById(Long.valueOf(id));
 
         if (oldCategory.isEmpty()) {
             return "redirect:/categories";

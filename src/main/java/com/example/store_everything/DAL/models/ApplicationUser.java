@@ -5,14 +5,13 @@ import jakarta.validation.constraints.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 public class ApplicationUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long Id;
     @NotNull
     @Size(min = 3, max = 20)
     @Pattern(regexp = "[A-Z][a-z]*")
@@ -54,11 +53,11 @@ public class ApplicationUser {
     @OneToMany(mappedBy = "storedByUser")
     private List<StoredElement> storedByUser;
 
-    public UUID getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         Id = id;
     }
 

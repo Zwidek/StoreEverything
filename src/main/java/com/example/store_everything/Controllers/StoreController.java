@@ -166,14 +166,14 @@ public class StoreController {
 
     @GetMapping("/store/delete/{id}")
     public String deleteStoredElement(@PathVariable("id") String id) {
-        Optional<StoredElement> storedElement = this.storedElementRepository.findById(UUID.fromString(id));
+        Optional<StoredElement> storedElement = this.storedElementRepository.findById(Long.valueOf(id));
         storedElement.ifPresent(this.storedElementRepository::delete);
         return "redirect:/store";
     }
 
     @GetMapping("/store/edit/{id}")
     public String showEditStoredElementForm(@PathVariable("id") String id, Model model) {
-        Optional<StoredElement> oldStoredElement = this.storedElementRepository.findById(UUID.fromString(id));
+        Optional<StoredElement> oldStoredElement = this.storedElementRepository.findById(Long.valueOf(id));
 
         if (oldStoredElement.isEmpty()) {
             return "redirect:/store";

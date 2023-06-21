@@ -6,15 +6,14 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "category")
 public class Category {
 
     @jakarta.persistence.Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long Id;
 
     @NotNull(message = "Title is required")
     @Size(min=3, max=20, message = "Title length should be between 3 and 20 characters")
@@ -27,11 +26,11 @@ public class Category {
     public Category() {
     }
 
-    public UUID getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         Id = id;
     }
 

@@ -4,8 +4,6 @@ import com.example.store_everything.DAL.models.ApplicationUser;
 import com.example.store_everything.DAL.repositories.RoleRepository;
 import com.example.store_everything.DAL.repositories.UserRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +14,6 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Controller
 public class UsersController {
@@ -42,7 +39,7 @@ public class UsersController {
     @GetMapping("/users/edit/{user_id}")
     public String showEditUserForm(@PathVariable(value="user_id") String id, WebRequest request, Model model){
 
-        Optional<ApplicationUser> user = this.userRepository.findById(UUID.fromString(id));
+        Optional<ApplicationUser> user = this.userRepository.findById(Long.valueOf(id));
 
         if(user.isEmpty()){
             return "users";
