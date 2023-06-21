@@ -16,6 +16,7 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,9 @@ public class StoreController {
     private final UserRepository userRepository;
     private final AccessTypeRepository accessTypeRepository;
     private final CategoryRepository categoryRepository;
+
+    @Value("${email.password}")
+    private String emailPassword;
 
     public StoreController(StoredElementRepository storedElementRepository, UserRepository userRepository, AccessTypeRepository accessTypeRepository, CategoryRepository categoryRepository) {
         this.storedElementRepository = storedElementRepository;
@@ -132,7 +136,7 @@ public class StoreController {
             email.setHostName("smtp.office365.com");
             email.setSmtpPort(587);
             email.setStartTLSEnabled(true);
-            email.setAuthenticator(new DefaultAuthenticator("71033@student.pb.edu.pl", "TODO")); //TODO podac haslo
+            email.setAuthenticator(new DefaultAuthenticator("71033@student.pb.edu.pl", emailPassword));
             email.setFrom("71033@student.pb.edu.pl");
             email.setSubject(username + " Zaprosił Cie do obejrzenia nowej notatki w aplikacji store everything!");
             email.setMsg("Message is waiting from: " + username + "\nhttp://localhost:8080/shared/shared_with_me");
