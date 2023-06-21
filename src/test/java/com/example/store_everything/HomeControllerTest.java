@@ -1,6 +1,6 @@
 package com.example.store_everything;
 
-import com.example.store_everything.Controllers.StoreController;
+import com.example.store_everything.Controllers.HomeController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class StoreControllerTest {
+public class HomeControllerTest {
 
     @Value(value="8080")
     private int port;
@@ -28,14 +28,14 @@ public class StoreControllerTest {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    private StoreController storeController;
+    private HomeController homeControllerTest;
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     void contextLoads() throws Exception {
-        assertThat(storeController).isNotNull();
+        assertThat(homeControllerTest).isNotNull();
     }
 
     @Test
